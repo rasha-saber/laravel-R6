@@ -109,3 +109,5 @@ Route::prefix('cars')->group(function() {
         });
     });
 });
+Route::get('/contact', [ExampleController::class, 'index'])->name('contact.index');
+Route::post('/contact', [ExampleController::class, 'contactsubmit'])->name('contact.submit');
