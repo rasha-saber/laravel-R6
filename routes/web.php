@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ExampleController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -109,3 +110,5 @@ Route::prefix('cars')->group(function() {
         });
     });
 });
+Route::get('/contact', [ExampleController::class, 'index'])->name('contact.index');
+Route::post('/contact', [ExampleController::class, 'contactsubmit'])->name('contact.submit');
