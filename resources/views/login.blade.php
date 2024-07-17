@@ -9,7 +9,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-<!-- هههههههههههه -->
+
 <div class="container">
   <h2>Vertical (basic) form</h2>
   <form action="{{route('login_accepted')}}" method="POST">
