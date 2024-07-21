@@ -1,34 +1,4 @@
-<!-- <!DOCTYPE html>
-<html>
-<head>
-    <title>Add Class</title>
-</head>
-<body>
-    <h2>Add Class</h2>
-    <form action="{{ route('School-Classes.store') }}" method="POST">
-        @csrf
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required><br>
 
-        <label for="capacity">Capacity:</label>
-        <input type="number" id="capacity" name="capacity" required><br>
-
-        <label for="is_fulled">Is Fulled:</label>
-        <input type="checkbox" id="is_fulled" name="is_fulled"><br>
-
-        <label for="price">Price:</label>
-        <input type="number" id="price" name="price" step="0.01" required><br>
-
-        <label for="time_from">Time From:</label>
-        <input type="time" id="time_from" name="time_from" required><br>
-
-        <label for="time_to">Time To:</label>
-        <input type="time" id="time_to" name="time_to" required><br>
-
-        <button type="submit">Add Class</button>
-    </form>
-</body>
-</html> -->
 
 <!DOCTYPE html>
 <html lang="en">
