@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExampleController;
-
+use App\Http\Controllers\CarController;
+use App\Http\Controllers\SchoolClassController;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -114,3 +115,10 @@ Route::prefix('cars')->group(function() {
 //التاسك
 Route::get('/contact', [ExampleController::class, 'index'])->name('contact.index');
 Route::post('/contact', [ExampleController::class, 'contactsubmit'])->name('contact.submit');
+
+///
+Route::get('/cars/create', [CarController::class, 'create'])->name('cars.create');
+Route::post('/cars', [CarController::class, 'store'])->name('cars.store');
+//
+Route::get('/School-Classes/create', [SchoolClassController::class, 'create'])->name('School-Classes.create');
+Route::post('/School-Classes', [SchoolClassController::class, 'store'])->name('School-Classes.store');
