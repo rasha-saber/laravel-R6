@@ -12,8 +12,14 @@ class CarController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        //
+    {//المحاضرة 5
+       // get all cars from database
+        // return view all cars, cars data
+        // select * from cars;
+        //افترضي=موديل
+        $cars= Car::get();
+        //(اسم الملف, compact('الفيربول')):
+        return view('cars', compact('cars'));
     }
 
     /**
@@ -29,22 +35,47 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
+        // ادخال بيانات ثابته
         // dd($request);
-        $carTitle = 'BMW';
+        // $carTitle = 'BMW';
        
-        $description = "test";
-        $price = 12;
-        $published = true;
+        // $description = "test";
+        // $price = 12;
+        // $published = true;
 
-        Car::create([
-            'carTitle' => $carTitle,
+        // Car::create([
+        //     'carTitle' => $carTitle,
             
-            'description' => $description,
-            'price' => $price,
-            'published' => $published
-        ]);
+        //     'description' => $description,
+        //     'price' => $price,
+        //     'published' => $published
+        // ]);
+        // return "Data addad successfully";
+////////////////////////////////////////
+// طريقة كبيرة للpublished
+
+        // if(isset($request->published)){
+        //     $pub = true;
+        // }else{
+        //     $pub = false;
+        // }
+////////////////////////////////////////////////////////////////////////////
+
+ //المحاضرة 5 
+
+// dd($request);
+       $data=[
+            //'k'= 'v'
+        
+'carTitle' =>$request->carTitle,
+'description' =>$request->description,
+'price' =>$request->price,
+'published' =>isset($request->published),
+//'published' =>pub,
+        ];
+        car::create($data);
         return "Data addad successfully";
-        // return view('add_car');
+      
     }
 
 
@@ -61,8 +92,12 @@ class CarController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
-    {
-        //
+    {           //=model
+        // get data of car to be updated
+        // select 
+        $car = Car::findOrFail($id);
+        return view('edit_car', compact('car'));
+        // return "Data addad successfully $id";
     }
 
     /**

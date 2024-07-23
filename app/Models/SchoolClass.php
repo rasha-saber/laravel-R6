@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ShoolClass extends Model
+class SchoolClass extends Model
 {
     use HasFactory;
     // protected $table = 'School_classes';
@@ -15,6 +15,34 @@ class ShoolClass extends Model
        'is_fulled' ,
         'price',
         'time_from',
-        'time_to',
+        'time_to'
     ];
+
+
+
+
+
+     // public function getIsFulledAttribute($value)
+    // {
+    //     return $value ? 'Yes' : 'No';
+    // }
+
+    //او
+    // public function getIsFulledTextAttribute()
+    // {
+    //     return $this->is_fulled ? 'Yes' : 'No';
+    // } 
 }
+
+
+
+
+
+
+
+
+ 
+
+  
+ 
+
