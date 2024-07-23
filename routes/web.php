@@ -124,12 +124,11 @@ Route::get('/cars/{id}', [CarController::class, 'edit'])->name('cars.edit');
 Route::get('/contact', [ExampleController::class, 'index'])->name('contact.index');
 Route::post('/contact', [ExampleController::class, 'contactsubmit'])->name('contact.submit');
 
-///
 
 
 Route::get('/School-Classes/create', [SchoolClassController::class, 'create'])->name('School-Classes.create');
 Route::post('/School-Classes', [SchoolClassController::class, 'store'])->name('School-Classes.store');
-///
+
 // task5
  Route::get('/SchoolClasses', [SchoolClassController::class, 'index'])->name('SchoolClasses.index');
 Route::get('/SchoolClasses/{id}', [SchoolClassController::class, 'edit'])->name('SchoolClasses.edit');
