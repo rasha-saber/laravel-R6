@@ -12,7 +12,7 @@ class SchoolClassController extends Controller
      */
     public function index()
     {
-    // {تصليح
+    // 
         $SchoolClasses= SchoolClass::get();
 
         //VIEW(اسم الملف في الView); compact('$SchoolClassesهو ده')
@@ -39,7 +39,6 @@ class SchoolClassController extends Controller
         //'k'= 'v'
      
      
-    // تصليح
 'name' =>$request->name,
 'capacity' =>$request->capacity,
 'is_fulled' =>$request->is_fulled=== 'ON' ? 1 : 0,
@@ -74,7 +73,7 @@ class SchoolClassController extends Controller
      */
     public function edit(string $id)
     {
-        // تصليح
+       
          //=model
        
         // get data of car to be updated
