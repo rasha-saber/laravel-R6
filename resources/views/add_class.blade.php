@@ -49,19 +49,19 @@
           <div class="form-group mb-3 row">
             <label for="" class="form-label col-md-2 fw-bold text-md-end">Price:</label>
             <div class="col-md-10">
-              <input type="number" step="0.1" placeholder="Enter price" class="form-control py-2" name="price" />
+              <input type="number" step="0.1" placeholder="Enter price" class="form-control py-2" name="price"/>
             </div>
           </div>
           <div class="form-group mb-3 row">
             <label for="" class="form-label col-md-2 fw-bold text-md-end">Time From:</label>
             <div class="col-md-10">
-              <input type="time" class="form-control py-2" name="time_from" />
+              <input type="time" class="form-control py-2" name="time_from"/>
             </div>
           </div>
           <div class="form-group mb-3 row">
             <label for="" class="form-label col-md-2 fw-bold text-md-end">Time To:</label>
             <div class="col-md-10">
-              <input type="time" class="form-control py-2" name="time_to" />
+              <input type="time" class="form-control py-2" name="time_to"/>
             </div>
           </div>
           <div class="text-md-end">

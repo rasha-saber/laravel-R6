@@ -35,6 +35,10 @@ class SchoolClassController extends Controller
     public function store(Request $request)
     {
     //   dd($request);
+    // $request->validate([
+    //     'time_from' => 'required|date_format:H:i',
+    //     'time_to' => 'required|date_format:H:i',
+    // ]);
     $data=[
         //'k'= 'v'
      
@@ -42,10 +46,13 @@ class SchoolClassController extends Controller
 'name' =>$request->name,
 'capacity' =>$request->capacity,
 'is_fulled' =>$request->is_fulled=== 'ON' ? 1 : 0,
-'price' =>($request->price),
-'time_from' =>$request->time_from,
-'time_to' =>($request->time_to),
+'price' =>$request->price,
+'time_from' => 'required|date_format:H:i',
+ 'time_to' => 'required|date_format:H:i',
+// 'time_from' =>$request->time_from,
+// 'time_to' =>$request->time_to,   
 
+//$request->validate
 
     ];
     //model::create

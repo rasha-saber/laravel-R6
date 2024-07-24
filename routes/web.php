@@ -117,6 +117,12 @@ Route::post('/cars', [CarController::class, 'store'])->name('cars.store');
 //المحاضرة 5
 Route::get('/cars', [CarController::class, 'index'])->name('cars.index');
 Route::get('/cars/{id}', [CarController::class, 'edit'])->name('cars.edit');
+//المحاضرة 6
+
+
+
+
+
 
 
 

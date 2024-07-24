@@ -18,9 +18,8 @@ class SchoolClass extends Model
         'time_to'
     ];
 
-
-
-
+   
+  
 
      // public function getIsFulledAttribute($value)
     // {
