@@ -112,13 +112,29 @@ Route::prefix('cars')->group(function() {
     });
 });
 
+Route::get('/cars/create', [CarController::class, 'create'])->name('cars.create');
+Route::post('/cars', [CarController::class, 'store'])->name('cars.store');
+//المحاضرة 5
+Route::get('/cars', [CarController::class, 'index'])->name('cars.index');
+Route::get('/cars/{id}', [CarController::class, 'edit'])->name('cars.edit');
+//المحاضرة 6
+
+
+
+
+
+
+
+
 //التاسك
 Route::get('/contact', [ExampleController::class, 'index'])->name('contact.index');
 Route::post('/contact', [ExampleController::class, 'contactsubmit'])->name('contact.submit');
 
-///
-Route::get('/cars/create', [CarController::class, 'create'])->name('cars.create');
-Route::post('/cars', [CarController::class, 'store'])->name('cars.store');
-//
+
+///////////////////////////////////////////
 Route::get('/School-Classes/create', [SchoolClassController::class, 'create'])->name('School-Classes.create');
 Route::post('/School-Classes', [SchoolClassController::class, 'store'])->name('School-Classes.store');
+
+// task5
+ Route::get('/SchoolClasses', [SchoolClassController::class, 'index'])->name('SchoolClasses.index');
+Route::get('/SchoolClasses/{id}', [SchoolClassController::class, 'edit'])->name('SchoolClasses.edit');

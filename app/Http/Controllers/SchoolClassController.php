@@ -12,7 +12,12 @@ class SchoolClassController extends Controller
      */
     public function index()
     {
-        //
+    // 
+        $SchoolClasses= SchoolClass::get();
+
+        //VIEW(اسم الملف في الView); compact('$SchoolClassesهو ده')
+
+        return view('SchoolClasses', compact('SchoolClasses'));
     }
 
 
@@ -30,39 +35,37 @@ class SchoolClassController extends Controller
     public function store(Request $request)
     {
     //   dd($request);
-       $name = 'math';
-        $capacity = 3;
-        $is_fulled = 'yas';
-        $price = 177;
-        $time_from = 12;
-        $time_to = 15;
+    // $request->validate([
+    //     'time_from' => 'required|date_format:H:i',
+    //     'time_to' => 'required|date_format:H:i',
+    // ]);
+    $data=[
+        //'k'= 'v'
+     
+     
+'name' =>$request->name,
+'capacity' =>$request->capacity,
+'is_fulled' =>$request->is_fulled=== 'ON' ? 1 : 0,
+'price' =>$request->price,
+'time_from' => 'required|date_format:H:i',
+ 'time_to' => 'required|date_format:H:i',
+// 'time_from' =>$request->time_from,
+// 'time_to' =>$request->time_to,   
 
-        SchoolClass::create ([
-        // ($request->all());
-       
-            'name' => $name,
-            'capacity' => $capacity,
-            'is_fulled' => $is_fulled,
-            'price' => $price,
-            'time_from' => $time_from,
-            'time_to' =>$time_to,
-       ]);
-       return 'Data added successfully';
-//    $validatedData = $request->validate([
-//         'name' => 'required|string|max:255',
-//         'capacity' => 'required|integer',
-//         'is_fulled' => 'nullable|boolean',
-//         'price' => 'required|numeric',
-//         'time_from' => 'required|date_format:H:i',
-//         'time_to' => 'required|date_format:H:i',
-//     ]);
+//$request->validate
 
-    
-//     SchoolClass::create($validatedData);
+    ];
+    //model::create
+    SchoolClass::create ($data);
+    return "Data addad successfully";
+  
+}
 
-//     return redirect()->route('School-Classes.create')->with('success', 'Class added successfully');
         
-    }
+    
+
+        
+ 
 
     /**
      * Display the specified resource.
@@ -77,7 +80,15 @@ class SchoolClassController extends Controller
      */
     public function edit(string $id)
     {
-        //
+       
+         //=model
+       
+        // get data of car to be updated
+        // select 
+        $SchoolClass = SchoolClass::findOrFail($id);
+        return view('edit_class', compact('SchoolClass'));
+        // return "Data addad successfully $id";
+     
     }
 
     /**
