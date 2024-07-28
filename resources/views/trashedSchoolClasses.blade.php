@@ -20,7 +20,7 @@
   <main>
     <div class="container my-5">
       <div class="bg-light p-5 rounded">
-        <h2 class="fw-bold fs-2 mb-5 pb-2">AllClasses</h2>
+        <h2 class="fw-bold fs-2 mb-5 pb-2">trashedSchoolClasses</h2>
         <table class="table table-hover">
           <thead>
             <tr class="table-dark">
@@ -32,7 +32,7 @@
               <th scope="col">Time To</th>
               <th scope="col">Edit</th>
               <th scope="col">Show</th>
-              <th scope="col">Delete</th>
+              <th scope="col">PermenantDelete</th>
             </tr>
           </thead>
           <tbody>
@@ -44,15 +44,16 @@
               <td>{{$SchoolClass['price']}}</td>
               <td>{{$SchoolClass['time_from']}}</td>
               <td>{{$SchoolClass['time_to']}}</td>
-              <td><a href="{{route('SchoolClasses.edit', $SchoolClass['id'])}}">Edit</a></td>
-              <td><a href="{{route('SchoolClasses.Show', $SchoolClass['id'])}}">Show</a></td>
+              <td><a href="">Edit</a></td>
+              <td><a href="">Show</a></td>
 
               <td>
                 <form action="{{ route('deleteSchoolClass', $SchoolClass->id) }}" method="POST" style="display:inline-block;">
                   @csrf
                   @method('DELETE')
-                  <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this class?')">Delete</button>
+                  <button type="submit" class="btn btn-danger" onclick="">Delete</button>
                 </form>
+
               </td>
             </tr>
             @endforeach
