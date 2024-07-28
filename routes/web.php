@@ -125,6 +125,34 @@ Route::get('/cars/{id}/delete', [CarController::class, 'destroy'])->name('cars.d
 Route::get('/cars/trashed', [CarController::class, 'showDeleted'])->name('cars.showDeleted');
 
 
+//المحاضرة 7
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //التاسك
 Route::get('/contact', [ExampleController::class, 'index'])->name('contact.index');
 Route::post('/contact', [ExampleController::class, 'contactsubmit'])->name('contact.submit');
@@ -141,7 +169,7 @@ Route::get('/SchoolClasses/{id}/edit', [SchoolClassController::class, 'edit'])->
 
 
 
-//task5 
+//task6 
 Route::put('/SchoolClasses/{id}', [SchoolClassController::class, 'update'])->name('SchoolClasses.update');
 
 Route::get('/SchoolClasses/{id}/Show', [SchoolClassController::class, 'Show'])->name('SchoolClasses.Show');
