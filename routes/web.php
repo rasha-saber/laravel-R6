@@ -127,10 +127,9 @@ Route::get('/cars/trashed', [CarController::class, 'showDeleted'])->name('cars.s
 
 //المحاضرة 7
 
+Route::patch('/cars/{id}/', [CarController::class, 'restore'])->name('cars.restore');
 
-
-
-
+Route::delete('/cars/{id}/', [CarController::class, 'forceDelete'])->name('cars.forceDelete');
 
 
 
@@ -159,20 +158,24 @@ Route::post('/contact', [ExampleController::class, 'contactsubmit'])->name('cont
 
 
 ///////////////////////////////////////////
-Route::get('/School-Classes/create', [SchoolClassController::class, 'create'])->name('School-Classes.create');
-Route::post('/School-Classes', [SchoolClassController::class, 'store'])->name('School-Classes.store');
+
+Route::get('/School_Classes/create', [SchoolClassController::class, 'create'])->name('School_Classes.create');
+Route::post('/School_Classes', [SchoolClassController::class, 'store'])->name('School_Classes.store');
+
 
 // task5
 Route::get('/SchoolClasses', [SchoolClassController::class, 'index'])->name('SchoolClasses.index');
 Route::get('/SchoolClasses/{id}/edit', [SchoolClassController::class, 'edit'])->name('SchoolClasses.edit');
 
 
-
-
 //task6 
 Route::put('/SchoolClasses/{id}', [SchoolClassController::class, 'update'])->name('SchoolClasses.update');
-
 Route::get('/SchoolClasses/{id}/Show', [SchoolClassController::class, 'Show'])->name('SchoolClasses.Show');
-
 Route::delete('delete/{id}', [SchoolClassController::class, 'destroy'])->name('deleteSchoolClass');
 Route::get('/SchoolClasses/trashed', [SchoolClassController::class, 'ShowDeleted'])->name('SchoolClasses.ShowDeleted');
+ 
+
+//task7
+Route::patch('/SchoolClasses/{id}/', [SchoolClassController::class, 'restore'])->name('SchoolClasses.restore');
+Route::delete('/SchoolClasses/{id}/', [SchoolClassController::class, 'forceDelete'])->name('SchoolClasses.forceDelete');
+

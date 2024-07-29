@@ -35,6 +35,8 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
+
+
         // ادخال بيانات ثابته
         // dd($request);
         // $carTitle = 'BMW';
@@ -63,19 +65,20 @@ class CarController extends Controller
 
         //المحاضرة 5 
 
-        // dd($request);
-        $data = [
-            //'k'= 'v'
 
-            'carTitle' => $request->carTitle,
-            'description' => $request->description,
-            'price' => $request->price,
+        $data = $request->validate([
+            'carTitle' => 'required|string',
+            'description' => 'required|string|max:1000',
+            'price' => 'required|decimal:0,1',
+        ]);
+        dd($request);
+        $data = [
             'published' => isset($request->published),
-            //'published' =>pub,
+
         ];
         car::create($data);
-        // return "Data addad successfully";
         return redirect()->route('cars.index');
+        // return "Data addad successfully";
     }
 
 
@@ -85,9 +88,9 @@ class CarController extends Controller
      */
     public function show(string $id)
     {
-    //    $car=car::findOrFall($id)
-       $car = Car::findOrFail($id);
-       return view('car_details', compact('car'));
+        //    $car=car::findOrFall($id)
+        $car = Car::findOrFail($id);
+        return view('car_details', compact('car'));
     }
 
     /**
@@ -138,7 +141,24 @@ class CarController extends Controller
     {
         $cars = Car::onlyTrashed()->get();
         return view('trashedCars', compact('cars'));
-       
+
         // return redirect()->route('cars.index');
-    } 
+    }
+
+
+
+    public function restore(string $id)
+    {
+        // return "delete page";
+        car::where('id', $id)->restore();
+        // return "Data deleted successfully"; 
+        return redirect()->route('cars.showDeleted');
+    }
+
+    public function forceDelete(Request $request, string $id)
+    {
+        // return "delete page";
+        car::where('id', $id)->forceDelete();
+        return redirect()->route('cars.index');
+    }
 }

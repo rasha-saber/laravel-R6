@@ -46,34 +46,31 @@ class SchoolClassController extends Controller
      */
     public function store(Request $request)
     {
+        
+    
 
-        //   dd($request);
-        $request->validate([
-            'time_from' => 'required|date_format:H:i',
-            'time_to' => 'required|date_format:H:i',
-        ]);
-        $data = [
-            //'k'= 'v'
+    $data = $request->validate([
+        'name' => 'required|string|max:100',
+        'capacity' => 'required|integer',
+        'price' => 'required|numeric',
+        'time_from' => 'required|date_format:H:i',
+        'time_to' => 'required|date_format:H:i',
+    ]);
 
+  
+    $data['is_fulled'] = isset($request->is_fulled);
 
-            'name' => $request->name,
-            'capacity' => $request->capacity,
-            'is_fulled' => isset($request->is_fulled),
-            'price' => $request->price,
-            'time_from' => $request->time_from,
-            'time_to' => $request->time_to,
+   
+    SchoolClass::create($data);
 
+    return redirect()->route('SchoolClasses.index');
 
-        ];
-        //model::create
-        SchoolClass::create($data);
-        // return "Data addad successfully";
-        return redirect()->route('SchoolClasses.index');
-    }
+     
 
 
+}
 
-
+  
 
 
 
@@ -97,16 +94,22 @@ class SchoolClassController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
-    {
+    {   
+
+    // public function edit(SchoolClass $SchoolClass )
+    // {
+
+    //    dd($SchoolClass);
 
         //=model
-
         // get data of car to be updated
         // select 
+
+
         $SchoolClass = SchoolClass::findOrFail($id);
         return view('edit_class', compact('SchoolClass'));
         // return "Data addad successfully $id";
-        return redirect()->route('SchoolClasses.index');
+        // return redirect()->route('SchoolClasses.index');
     }
 
 
@@ -124,53 +127,27 @@ class SchoolClassController extends Controller
 
 
 
-        // $request->validate([
-        //     'time_from' => 'required|date_format:H:i',
-        //     'time_to' => 'required|date_format:H:i',
-        // ]);
+$data = $request->validate([
+    'name' => 'required|string|max:100',
+    'capacity' => 'required|integer',
+    'price' => 'required|decimal:0,1',
+    'time_from' => 'required|date_format:H:i',
+    'time_to' => 'required|date_format:H:i',
+    // 'updated_at' => now(),
+]);
 
-        $data = [
-            'name' => $request->name,
-            'capacity' => $request->capacity,
-            'is_fulled' => isset($request->is_fulled),
-            'price' => $request->price,
-            // 'time_from' => 'required|date_format:H:i',
-            // 'time_to' => 'required|date_format:H:i',
-            'time_from' => $request->time_from,
-            'time_to' => $request->time_to,
-        ];
+// إضافة حالة الفصل إذا كانت ممتلئة
+$data['is_fulled'] = isset($request->is_fulled);
 
-        SchoolClass::where('id', $id)->update($data);
-        return redirect()->route('SchoolClasses.index');
+// dd($data);
+ 
+// تحديث السجل في قاعدة البيانات
+SchoolClass::where('id', $id)->update($data);
 
+// إعادة توجيه المستخدم إلى صفحة عرض الفصول
+return redirect()->route('SchoolClasses.index');
 
-
-
-
-
-        // $request->validate([
-        //     'time_from' => 'required|date_format:H:i',
-        //     'time_to' => 'required|date_format:H:i',
-        // ]);
-
-        // $data = [
-        //     'name' => $request->name,
-        //     'capacity' => $request->capacity,
-        //     'is_fulled' => isset($request->is_fulled),
-        //     'price' => $request->price,
-        //     'time_from' => $request->time_from,
-        //     'time_to' => $request->time_to,
-        // ];
-
-        // SchoolClass::where('id', $id)->update($data);
-        // return redirect()->route('SchoolClasses.index');
     }
-
-
-
-
-
-
 
     /**
      * Remove the specified resource from storage.
@@ -195,4 +172,26 @@ class SchoolClassController extends Controller
 
         return redirect()->route('SchoolClasses.index');
     }
+
+
+
+    public function restore(string $id)
+    {
+        
+        SchoolClass::where('id', $id)->restore();
+       
+        return redirect()->route('SchoolClasses.ShowDeleted');
+    }
+
+
+
+    public function forceDelete(Request $request, string $id)
+    {
+      
+      
+        SchoolClass::where('id', $id)->forceDelete();
+        return redirect()->route('SchoolClasses.index');
+    }
+
+
 }

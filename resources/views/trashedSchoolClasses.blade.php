@@ -30,8 +30,9 @@
               <th scope="col">Price</th>
               <th scope="col">Time From</th>
               <th scope="col">Time To</th>
-              <th scope="col">Edit</th>
-              <th scope="col">Show</th>
+              <!-- <th scope="col">Edit</th>
+              <th scope="col">Show</th> -->
+              <th scope="col">restore</th>
               <th scope="col">PermenantDelete</th>
             </tr>
           </thead>
@@ -44,16 +45,26 @@
               <td>{{$SchoolClass['price']}}</td>
               <td>{{$SchoolClass['time_from']}}</td>
               <td>{{$SchoolClass['time_to']}}</td>
-              <td><a href="">Edit</a></td>
-              <td><a href="">Show</a></td>
+              <!-- <td><a href="">Edit</a></td>
+              <td><a href="">Show</a></td> -->
 
               <td>
-                <form action="{{ route('deleteSchoolClass', $SchoolClass->id) }}" method="POST" style="display:inline-block;">
+                <form action="{{ route('SchoolClasses.restore', $SchoolClass->id) }}" method="POST" style="display:inline-block;">
                   @csrf
-                  @method('DELETE')
-                  <button type="submit" class="btn btn-danger" onclick="">Delete</button>
+                  @method('patch')
+                  <button type="submit" class="btn btn-link m-0 p-0">Restore</button>
+                  <!-- <button type="submit" class="btn btn-danger" onclick="">Restore</button> -->
                 </form>
 
+              </td>
+
+              <td>
+                <form action="{{route('SchoolClasses.forceDelete', $SchoolClass['id'])}}" method="POST">
+                  @csrf
+                  @method('delete')
+                  <button type="submit" class="btn btn-link m-0 p-0">delete</button>
+                  <!-- <button type="submit" class="btn btn-danger" onclick="">delete</button> -->
+                </form>
               </td>
             </tr>
             @endforeach
