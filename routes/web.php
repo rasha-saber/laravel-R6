@@ -156,8 +156,7 @@ Route::delete('/cars/{id}/', [CarController::class, 'forceDelete'])->name('cars.
 Route::get('/contact', [ExampleController::class, 'index'])->name('contact.index');
 Route::post('/contact', [ExampleController::class, 'contactsubmit'])->name('contact.submit');
 
-
-///////////////////////////////////////////
+//
 
 Route::get('/School_Classes/create', [SchoolClassController::class, 'create'])->name('School_Classes.create');
 Route::post('/School_Classes', [SchoolClassController::class, 'store'])->name('School_Classes.store');

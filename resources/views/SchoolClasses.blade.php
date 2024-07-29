@@ -36,6 +36,7 @@
             </tr>
           </thead>
           <tbody>
+            
             @foreach($SchoolClasses as $SchoolClass)
             <tr>
               <td scope="row">{{$SchoolClass['name']}}</td>
@@ -51,7 +52,7 @@
                 <form action="{{ route('deleteSchoolClass', $SchoolClass->id) }}" method="POST" style="display:inline-block;">
                   @csrf
                   @method('DELETE')
-                  
+
                   <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this class?')">Delete</button>
                 </form>
               </td>

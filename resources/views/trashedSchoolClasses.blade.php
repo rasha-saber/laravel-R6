@@ -63,7 +63,7 @@
                   @csrf
                   @method('delete')
                   <button type="submit" class="btn btn-link m-0 p-0">delete</button>
-                  <!-- <button type="submit" class="btn btn-danger" onclick="">delete</button> -->
+                  
                 </form>
               </td>
             </tr>
