@@ -82,7 +82,7 @@
            </div>
          </form>
          @if(isset($car->image))
-         <img src="{{ asset('images/' . $car->image) }}" alt="" width="100">
+         <img src="{{ asset('uploads/' . $car->image) }}" alt="" width="100">
          @endif
        </div>
      </div>
