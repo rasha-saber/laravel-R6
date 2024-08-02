@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Car;
+use App\Models\car;
 
 
 class CarController extends Controller
@@ -27,14 +27,18 @@ class CarController extends Controller
      */
     public function create()
     {
+
         return view('add_car');
+        // $car = new Car();
+        // return view('add_car', compact('car'));
+
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
+    // public function store(Request $request)
+    // {
 
 
         // ادخال بيانات ثابته
@@ -63,29 +67,142 @@ class CarController extends Controller
         // }
         ////////////////////////////////////////////////////////////////////////////
 
-        //المحاضرة 5 
+        
 
+        ///
+        // public function store(Request $request)
+        // {صج
+    //         $data = $request->validate([
+    //             'carTitle' => 'required|string|max:255',
+    //             'description' => 'required|string|max:1000',
+    //             'price' => 'required|numeric',
+    //             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    //         ]);
 
+    // $car = new Car;
+    // $car->carTitle = $data['carTitle'];
+    // $car->description = $data['description'];
+    // $car->price = $data['price'];
+    // $car->published = $request->has('published');
+
+    // // رفع الصورة وتخزينها
+    // if ($request->hasFile('image')) {
+    //     $imageName = time().'.'.$request->image->extension();
+    //     $request->image->move(public_path('images'), $imageName);
+    //     $car->image = $imageName;
+    // }
+    // $car->save();
+
+    // return redirect()->route('cars.index')->with('success', 'Car added successfully');
+    // }
+   
+   ///////////////////////////////////////////////////////////////////////////////////////////////////////
+   public function store(Request $request)
+    {
+//صج
         $data = $request->validate([
-            'carTitle' => 'required|string',
+            'carTitle' => 'required|string|max:255',
             'description' => 'required|string|max:1000',
-            'price' => 'required|decimal:0,1',
+            'price' => 'required|numeric',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+           
         ]);
-        dd($request);
-        $data = [
-            'published' => isset($request->published),
+       $data['published'] = isset($request->published);
+        // التحقق من رفع الصورة
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move('uploads', $filename); // نقل الصورة إلى مجلد uploads
+            $data['image'] = $filename;
+        }
 
-        ];
-        car::create($data);
+        Car::create($data); // حفظ بيانات السيارة في قاعدة البيانات
         return redirect()->route('cars.index');
-        // return "Data addad successfully";
     }
 
+   
+    ///// /////   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // public function store(Request $request)
+    // {
+    //صج
+    //     $data = $request->validate([
+    //         'carTitle' => 'required|string|max:255',
+    //         'description' => 'required|string|max:1000',
+    //         'price' => 'required|decimal:0,1',
+    //         'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+    //     ]);
+       
+    //     $path = $request->file('image')->store('images', 'public');
+
+    //     $car = new Car;
+    //     $car->carTitle = $data['carTitle'];
+    //     $car->description = $data['description'];
+    //     $car->price = $data['price'];
+    //     $car->image = $path;
+    //     $car->published = $request->has('published');
+    //     $car->save();
+
+    //     return redirect()->route('cars.index');
+   
+    // }
 
 
-    /**
-     * Display the specified resource.
-     */
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  
+// public function store(Request $request)
+//     {
+//        //صج
+//         $data = $request->validate([
+//             'carTitle' => 'required|string|max:255',
+//             'description' => 'required|string|max:1000',
+//             'price' => 'required|numeric', 
+//             'image' => 'required|mimes:png,jpg,jpeg|max:2048',
+//         ]);
+
+//         // تحديد قيمة 'published'
+//         $data['published'] = $request->has('published') ? 1 : 0;
+
+//         // معالجة رفع الصورة
+//         if ($request->hasFile('image')) {
+//             $file = $request->file('image');
+//             $fileName = time() . '.' . $file->getClientOriginalExtension();
+//             $file->move(public_path('uploads'), $fileName); 
+//             $data['image'] = 'uploads/' . $fileName; // حفظ مسار الصورة بالنسبة للمجلد العام
+//         }
+
+//         Car::create($data); // حفظ بيانات السيارة في قاعدة البيانات
+
+//           return redirect()->route('cars.index');
+//     }
+
+
+
+//   // دالة لرفع الملفات
+//   protected function uploadFile(Request $request, $fieldName, $destination)
+//   {
+//       if ($request->hasFile($fieldName)) {
+//           $file = $request->file($fieldName);
+//           $filename = time() . '.' . $file->getClientOriginalExtension();
+//           $file->move($destination, $filename);
+//           return $filename;
+//       }
+//       return null;
+//   }
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ 
+
+
+    
+
+
+
+
+
+
+    // /**
+    //  * Display the specified resource.
+    //  */
     public function show(string $id)
     {
         //    $car=car::findOrFall($id)
@@ -108,22 +225,60 @@ class CarController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+     public function update(Request $request, string $id)
     {
-        //    dd($request, $id);
+        // // التحقق من صحة البيانات 
+        // $data = $request->validate([
+        //     'carTitle' => 'required|string|max:255',
+        //     'description' => 'required|string|max:1000',
+        //     'price' => 'required|numeric',
+        //     'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        // ]);
+    
+        // // البحث عن السيارة وتحديث بياناتها
+        // $car = Car::findOrFail($id);
+        // $car->carTitle = $data['carTitle'];
+        // $car->description = $data['description'];
+        // $car->price = $data['price'];
+        // $car->published = $request->has('published');
+    
+        // // لو تم رفع صورة جديدة، احفظ الصورة وحدث البيانات
+        // if ($request->hasFile('image')) {
+        //     // حذف الصورة القديمة من المجلد إذا كانت موجودة
+        //     if ($car->image && file_exists(public_path('images/' . $car->image))) {
+        //         unlink(public_path('images/' . $car->image));
+        //     }
+    
+        //     // رفع الصورة الجديدة
+        //     $imageName = time().'.'.$request->image->extension();
+        //     $request->image->move(public_path('images'), $imageName);
+        //     $car->image = $imageName;
+        // }
+    
+        // // حفظ التعديلات
+        // $car->save();
+    
+        //    return redirect()->route('cars.index');
 
-        $data = [
-            //'k'= 'v'
 
-            'carTitle' => $request->carTitle,
-            'description' => $request->description,
-            'price' => $request->price,
-            'published' => isset($request->published),
-
-        ];
-        car::where('id', $id)->update($data);
-        // return "Data updated successfully";
-        return redirect()->route('cars.index');
+        $data = $request->validate([
+            'carTitle' => 'required|string|max:255',
+            'description' => 'required|string|max:1000',
+            'price' => 'required|numeric',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+           
+        ]);
+       $data['published'] = isset($request->published);
+        // التحقق من رفع الصورة
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move('uploads', $filename); // نقل الصورة إلى مجلد uploads
+            $data['image'] = $filename;
+            $car = Car::findOrFail($id);
+            $car->update($data);
+            return redirect()->route('cars.index');
+        }
     }
 
     /**

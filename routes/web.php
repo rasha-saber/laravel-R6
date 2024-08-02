@@ -134,8 +134,10 @@ Route::delete('/cars/{id}/', [CarController::class, 'forceDelete'])->name('cars.
 
 
 
+//المحاضرة 8
 
-
+Route::get('/uploadForm', [ExampleController::class, 'uploadForm']);
+Route::post('/upload', [ExampleController::class, 'upload'])->name('upload');
 
 
 

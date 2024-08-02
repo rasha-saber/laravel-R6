@@ -44,6 +44,7 @@
               <td>{{$car['price']}}</td>
               <td>{{ Str::limit($car['description'], 15,'....')}}</td>
               <td>@if($car['published']=== 1) YES @else NO @endif</td>
+            
               <td><a href="{{route('cars.edit', $car['id'])}}">Edit</a></td>
               <td><a href="{{route('cars.Show', $car['id'])}}">Show</a></td>
               <td><a href="{{route('cars.destroy', $car['id'])}}" onclick=" return confirm('Are you sure you want to delete?')">delete</a></td>
