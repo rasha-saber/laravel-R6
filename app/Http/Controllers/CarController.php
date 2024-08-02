@@ -41,37 +41,66 @@ class CarController extends Controller
     // {
 
 
-        // ادخال بيانات ثابته
-        // dd($request);
-        // $carTitle = 'BMW';
+    // ادخال بيانات ثابته
+    // dd($request);
+    // $carTitle = 'BMW';
 
-        // $description = "test";
-        // $price = 12;
-        // $published = true;
+    // $description = "test";
+    // $price = 12;
+    // $published = true;
 
-        // Car::create([
-        //     'carTitle' => $carTitle,
+    // Car::create([
+    //     'carTitle' => $carTitle,
 
-        //     'description' => $description,
-        //     'price' => $price,
-        //     'published' => $published
-        // ]);
-        // return "Data addad successfully";
-        ////////////////////////////////////////
-        // طريقة كبيرة للpublished
+    //     'description' => $description,
+    //     'price' => $price,
+    //     'published' => $published
+    // ]);
+    // return "Data addad successfully";
+    ////////////////////////////////////////
+    // طريقة كبيرة للpublished
 
-        // if(isset($request->published)){
-        //     $pub = true;
-        // }else{
-        //     $pub = false;
-        // }
-        ////////////////////////////////////////////////////////////////////////////
+    // if(isset($request->published)){
+    //     $pub = true;
+    // }else{
+    //     $pub = false;
+    // }
+ 
 
-        
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////
+    public function store(Request $request)
+    {
+        //صج
+        $data = $request->validate([
+            'carTitle' => 'required|string|max:255',
+            'description' => 'required|string|max:1000',
+            'price' => 'required|numeric',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 
-        ///
-        // public function store(Request $request)
-        // {صج
+        ]);
+        $data['published'] = isset($request->published);
+        // التحقق من رفع الصورة
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move('uploads', $filename);
+            $data['image'] = $filename;
+        }
+
+        Car::create($data); // حفظ بيانات العربية في الداتابيس 
+        return redirect()->route('cars.index');
+    }
+
+
+
+
+       ////////////////////////////////////////////////////////////////////////////
+
+
+
+    ///
+    // public function store(Request $request)
+    // {صج
     //         $data = $request->validate([
     //             'carTitle' => 'required|string|max:255',
     //             'description' => 'required|string|max:1000',
@@ -95,33 +124,9 @@ class CarController extends Controller
 
     // return redirect()->route('cars.index');
     // }
-   
-   ///////////////////////////////////////////////////////////////////////////////////////////////////////
-   public function store(Request $request)
-    {
-//صج
-        $data = $request->validate([
-            'carTitle' => 'required|string|max:255',
-            'description' => 'required|string|max:1000',
-            'price' => 'required|numeric',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-           
-        ]);
-       $data['published'] = isset($request->published);
-        // التحقق من رفع الصورة
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $filename = time() . '.' . $file->getClientOriginalExtension();
-            $file->move('uploads', $filename); 
-            $data['image'] = $filename;
-        }
 
-        Car::create($data); // حفظ بيانات العربية في الداتابيس 
-        return redirect()->route('cars.index');
-    }
 
-   
-    ///// /////   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////
     // public function store(Request $request)
     // {
     //صج
@@ -131,7 +136,7 @@ class CarController extends Controller
     //         'price' => 'required|decimal:0,1',
     //         'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
     //     ]);
-       
+
     //     $path = $request->file('image')->store('images', 'public');
 
     //     $car = new Car;
@@ -143,54 +148,56 @@ class CarController extends Controller
     //     $car->save();
 
     //     return redirect()->route('cars.index');
-   
+
     // }
 
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  
-// public function store(Request $request)
-//     {
-//        //صج
-//         $data = $request->validate([
-//             'carTitle' => 'required|string|max:255',
-//             'description' => 'required|string|max:1000',
-//             'price' => 'required|numeric', 
-//             'image' => 'required|mimes:png,jpg,jpeg|max:2048',
-//         ]);
+    //////////////////////////////////////////////////////////////////////////////////////////////////
 
-//         // تحديد قيمة 'published'
-//         $data['published'] = $request->has('published') ? 1 : 0;
+    // public function store(Request $request)
+    //     {
+    //        //صج
+    //         $data = $request->validate([
+    //             'carTitle' => 'required|string|max:255',
+    //             'description' => 'required|string|max:1000',
+    //             'price' => 'required|numeric', 
+    //             'image' => 'required|mimes:png,jpg,jpeg|max:2048',
+    //         ]);
 
-//         // معالجة رفع الصورة
-//         if ($request->hasFile('image')) {
-//             $file = $request->file('image');
-//             $fileName = time() . '.' . $file->getClientOriginalExtension();
-//             $file->move(public_path('uploads'), $fileName); 
-//             $data['image'] = 'uploads/' . $fileName; 
-//         }
+    //         // تحديد قيمة 'published'
+    //         $data['published'] = $request->has('published') ? 1 : 0;
 
-//         Car::create($data); // حفظ بيانات العربية في قاعدة البيانات
+    //         // معالجة رفع الصورة
+    //         if ($request->hasFile('image')) {
+    //             $file = $request->file('image');
+    //             $fileName = time() . '.' . $file->getClientOriginalExtension();
+    //             $file->move(public_path('uploads'), $fileName); 
+    //             $data['image'] = 'uploads/' . $fileName; 
+    //         }
 
-//           return redirect()->route('cars.index');
-//     }
+    //         Car::create($data); // حفظ بيانات العربية في قاعدة البيانات
+
+    //           return redirect()->route('cars.index');
+    //     }
 
 
 
-//   // دالة لرفع الملفات
-//   protected function uploadFile(Request $request, $fieldName, $destination)
-//   {
-//       if ($request->hasFile($fieldName)) {
-//           $file = $request->file($fieldName);
-//           $filename = time() . '.' . $file->getClientOriginalExtension();
-//           $file->move($destination, $filename);
-//           return $filename;
-//       }
-//       return null;
-//   }
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
- 
+    //   // دالة لرفع الملفات
+    //   protected function uploadFile(Request $request, $fieldName, $destination)
+    //   {
+    //       if ($request->hasFile($fieldName)) {
+    //           $file = $request->file($fieldName);
+    //           $filename = time() . '.' . $file->getClientOriginalExtension();
+    //           $file->move($destination, $filename);
+    //           return $filename;
+    //       }
+    //       return null;
+    //   }
+  ///////////////////////////////////////////////////////////////////////////
+
+
+
 
     // /**
     //  * Display the specified resource.
@@ -201,6 +208,8 @@ class CarController extends Controller
         $car = Car::findOrFail($id);
         return view('car_details', compact('car'));
     }
+
+
 
     /**
      * Show the form for editing the specified resource.
@@ -217,61 +226,81 @@ class CarController extends Controller
     /**
      * Update the specified resource in storage.
      */
-     public function update(Request $request, string $id)
+    public function update(Request $request, string $id)
     {
-        // // التحقق من صحة البيانات 
+   
+        $data = $request->validate([
+            'carTitle' => 'required|string|max:255',
+            'description' => 'required|string|max:1000',
+            'price' => 'required|numeric',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+
+        ]);
+        $data['published'] = isset($request->published);
+        // التحقق من رفع الصورة
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move('uploads', $filename);
+            $data['image'] = $filename;
+            $car = Car::findOrFail($id);
+            $car->update($data);
+            return redirect()->route('cars.index');
+        }
+
+
+////////////////////////
+
+//حل اخر
+     // // التحقق من صحة البيانات 
         // $data = $request->validate([
         //     'carTitle' => 'required|string|max:255',
         //     'description' => 'required|string|max:1000',
         //     'price' => 'required|numeric',
         //     'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         // ]);
-    
+
         // // البحث عن العربية وحدث بياناتها
         // $car = Car::findOrFail($id);
         // $car->carTitle = $data['carTitle'];
         // $car->description = $data['description'];
         // $car->price = $data['price'];
         // $car->published = $request->has('published');
-    
+
         // // لو تم رفع صورة جديدة، احفظ الصورة وحدث البيانات
         // if ($request->hasFile('image')) {
         //     // حذف الصورة القديمة  إذا كانت موجودة
         //     if ($car->image && file_exists(public_path('images/' . $car->image))) {
         //         unlink(public_path('images/' . $car->image));
         //     }
-    
+
         //     // رفع الصورة الجديدة
         //     $imageName = time().'.'.$request->image->extension();
         //     $request->image->move(public_path('images'), $imageName);
         //     $car->image = $imageName;
         // }
-    
+
         // // حفظ التعديلات
         // $car->save();
-    
+
         //    return redirect()->route('cars.index');
 
-
-        $data = $request->validate([
-            'carTitle' => 'required|string|max:255',
-            'description' => 'required|string|max:1000',
-            'price' => 'required|numeric',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-           
-        ]);
-       $data['published'] = isset($request->published);
-        // التحقق من رفع الصورة
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $filename = time() . '.' . $file->getClientOriginalExtension();
-            $file->move('uploads', $filename); 
-            $data['image'] = $filename;
-            $car = Car::findOrFail($id);
-            $car->update($data);
-            return redirect()->route('cars.index');
-        }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * Remove the specified resource from storage.
@@ -284,6 +313,16 @@ class CarController extends Controller
         return redirect()->route('cars.index');
     }
 
+
+
+
+
+
+
+
+
+
+
     public function showDeleted()
     {
         $cars = Car::onlyTrashed()->get();
@@ -291,6 +330,23 @@ class CarController extends Controller
 
         // return redirect()->route('cars.index');
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     public function restore(string $id)
