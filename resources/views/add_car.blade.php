@@ -64,28 +64,17 @@
              </div>
            </div>
 
-
-
-
-
-
            <div class="form-group mb-3 row">
              <label for="" class="form-label col-md-2 fw-bold text-md-end">Car image:</label>
-             <div class="col-md-10"> 
+             <div class="col-md-10">
 
-               <input type="file"  class="form-control py-2" name="image" />
-              
+               <input type="file" class="form-control py-2" name="image" />
+
                @error('image')
                <div class="alert alert-warning">{{$message}}</div>
                @enderror
-
-              
              </div>
            </div>
-
-           
-
-
            <div class="text-md-end">
              <button class="btn mt-4 btn-secondary text-white fs-5 fw-bold border-0 py-2 px-md-5">
                Add Car
@@ -93,8 +82,8 @@
            </div>
          </form>
          @if(isset($car->image))
-                        <img src="{{ asset('images/' . $car->image) }}" alt="" width="100">
-                    @endif
+         <img src="{{ asset('images/' . $car->image) }}" alt="" width="100">
+         @endif
        </div>
      </div>
    </main>

@@ -93,7 +93,7 @@ class CarController extends Controller
     // }
     // $car->save();
 
-    // return redirect()->route('cars.index')->with('success', 'Car added successfully');
+    // return redirect()->route('cars.index');
     // }
    
    ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -112,11 +112,11 @@ class CarController extends Controller
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $filename = time() . '.' . $file->getClientOriginalExtension();
-            $file->move('uploads', $filename); // نقل الصورة إلى مجلد uploads
+            $file->move('uploads', $filename); 
             $data['image'] = $filename;
         }
 
-        Car::create($data); // حفظ بيانات السيارة في قاعدة البيانات
+        Car::create($data); // حفظ بيانات العربية في الداتابيس 
         return redirect()->route('cars.index');
     }
 
@@ -168,10 +168,10 @@ class CarController extends Controller
 //             $file = $request->file('image');
 //             $fileName = time() . '.' . $file->getClientOriginalExtension();
 //             $file->move(public_path('uploads'), $fileName); 
-//             $data['image'] = 'uploads/' . $fileName; // حفظ مسار الصورة بالنسبة للمجلد العام
+//             $data['image'] = 'uploads/' . $fileName; 
 //         }
 
-//         Car::create($data); // حفظ بيانات السيارة في قاعدة البيانات
+//         Car::create($data); // حفظ بيانات العربية في قاعدة البيانات
 
 //           return redirect()->route('cars.index');
 //     }
@@ -191,14 +191,6 @@ class CarController extends Controller
 //   }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
  
-
-
-    
-
-
-
-
-
 
     // /**
     //  * Display the specified resource.
@@ -235,7 +227,7 @@ class CarController extends Controller
         //     'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         // ]);
     
-        // // البحث عن السيارة وتحديث بياناتها
+        // // البحث عن العربية وحدث بياناتها
         // $car = Car::findOrFail($id);
         // $car->carTitle = $data['carTitle'];
         // $car->description = $data['description'];
@@ -244,7 +236,7 @@ class CarController extends Controller
     
         // // لو تم رفع صورة جديدة، احفظ الصورة وحدث البيانات
         // if ($request->hasFile('image')) {
-        //     // حذف الصورة القديمة من المجلد إذا كانت موجودة
+        //     // حذف الصورة القديمة  إذا كانت موجودة
         //     if ($car->image && file_exists(public_path('images/' . $car->image))) {
         //         unlink(public_path('images/' . $car->image));
         //     }
@@ -273,7 +265,7 @@ class CarController extends Controller
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $filename = time() . '.' . $file->getClientOriginalExtension();
-            $file->move('uploads', $filename); // نقل الصورة إلى مجلد uploads
+            $file->move('uploads', $filename); 
             $data['image'] = $filename;
             $car = Car::findOrFail($id);
             $car->update($data);
@@ -299,7 +291,6 @@ class CarController extends Controller
 
         // return redirect()->route('cars.index');
     }
-
 
 
     public function restore(string $id)

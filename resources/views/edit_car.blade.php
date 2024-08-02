@@ -62,8 +62,6 @@
 
 
 
-
-
           <div class="form-group mb-3 row">
             <label for="" class="form-label col-md-2 fw-bold text-md-end">Car image:</label>
             <div class="col-md-10">

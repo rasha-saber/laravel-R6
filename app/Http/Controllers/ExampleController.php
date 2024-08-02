@@ -29,37 +29,32 @@ class ExampleController extends Controller
 
 
 
-    public function uploadForm(){
-     
-       
+    function uploadForm() {
         return view('upload');
     }
 
-
-
-
-
-    // public function upload(Request $request){
-    //     $file_extension = $request->image->getClientOriginalExtension();
-    //     $file_name = time() . '.' . $file_extension;
-    //     $path = 'assets/images';
-    //     $request->image->move($path, $file_name);
-    //     return 'Uploaded';
-    // }
-
-
-    public function upload(Request $request)
-    {
-        $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
-        ]);
-    
+    public function upload(Request $request){
         $file_extension = $request->image->getClientOriginalExtension();
         $file_name = time() . '.' . $file_extension;
-        $path = $request->image->storeAs('public/images', $file_name);
-    
+        $path = 'assets/images';
+        $request->image->move($path, $file_name);
+        
         return 'Uploaded';
     }
+
+
+    // public function upload(Request $request)
+    // {
+    //     $request->validate([
+    //         'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+    //     ]);
+    
+    //     $file_extension = $request->image->getClientOriginalExtension();
+    //     $file_name = time() . '.' . $file_extension;
+    //     $path = $request->image->storeAs('public/images', $file_name);
+    
+    //     return 'Uploaded';
+    // }
 
 
 
