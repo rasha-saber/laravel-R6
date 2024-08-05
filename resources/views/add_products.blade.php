@@ -57,12 +57,7 @@
              </div>
            </div>
            <hr>
-           <!-- <div class="form-group mb-3 row">
-             <label for="" class="form-label col-md-2 fw-bold text-md-end">Published:</label>
-             <div class="col-md-10">
-               <input type="checkbox" class="form-check-input" style="padding: 0.7rem;" name="published" {{ old('published') ? 'checked' : '' }} />
-             </div>
-           </div> -->
+           
 
            <div class="form-group mb-3 row">
              <label for="" class="form-label col-md-2 fw-bold text-md-end">Product image:</label>
