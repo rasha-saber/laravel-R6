@@ -12,11 +12,12 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function indexR() {
-     
-       
+    public function indexR()
+    {
+
+
         $products = Product::orderBy('created_at', 'desc')->take(3)->get();
-        return view('index', compact('products')) ;
+        return view('index', compact('products'));
     }
 
     /**
@@ -39,15 +40,15 @@ class ProductController extends Controller
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 
         ]);
-       
+
         $data['image'] = $this->uploadFile($request->image, 'assets/images');
 
 
 
-        Product::create($data); 
+        Product::create($data);
         return redirect()->route('products.index');
     }
-   
+
 
     /**
      * Display the specified resource.

@@ -187,7 +187,7 @@ Route::put('/SchoolClasses/{id}', [SchoolClassController::class, 'update'])->nam
 Route::get('/SchoolClasses/{id}/Show', [SchoolClassController::class, 'Show'])->name('SchoolClasses.Show');
 Route::delete('delete/{id}', [SchoolClassController::class, 'destroy'])->name('deleteSchoolClass');
 Route::get('/SchoolClasses/trashed', [SchoolClassController::class, 'ShowDeleted'])->name('SchoolClasses.ShowDeleted');
- 
+
 
 //task7
 Route::patch('/SchoolClasses/{id}/', [SchoolClassController::class, 'restore'])->name('SchoolClasses.restore');
