@@ -33,14 +33,14 @@ class ExampleController extends Controller
         return view('upload');
     }
 
-    public function upload(Request $request){
-        $file_extension = $request->image->getClientOriginalExtension();
-        $file_name = time() . '.' . $file_extension;
-        $path = 'assets/images';
-        $request->image->move($path, $file_name);
+    // public function upload(Request $request){
+    //     $file_extension = $request->image->getClientOriginalExtension();
+    //     $file_name = time() . '.' . $file_extension;
+    //     $path = 'assets/images';
+    //     $request->image->move($path, $file_name);
         
-        return 'Uploaded';
-    }
+    //     return 'Uploaded';
+    // }
 
 
     // public function upload(Request $request)
@@ -56,6 +56,9 @@ class ExampleController extends Controller
     //     return 'Uploaded';
     // }
 
+    function indexE() {
+        return view('index');
+    }
 
 
 }

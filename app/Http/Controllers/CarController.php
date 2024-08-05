@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\car;
-
+use App\Traits\Common;
 
 class CarController extends Controller
 {
+    use Common;
     /**
      * Display a listing of the resource.
      */
@@ -65,7 +66,7 @@ class CarController extends Controller
     // }else{
     //     $pub = false;
     // }
- 
+
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
     public function store(Request $request)
@@ -79,13 +80,9 @@ class CarController extends Controller
 
         ]);
         $data['published'] = isset($request->published);
-        // التحقق من رفع الصورة
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $filename = time() . '.' . $file->getClientOriginalExtension();
-            $file->move('uploads', $filename);
-            $data['image'] = $filename;
-        }
+        $data['image'] = $this->uploadFile($request->image, 'assets/images');
+
+
 
         Car::create($data); // حفظ بيانات العربية في الداتابيس 
         return redirect()->route('cars.index');
@@ -94,7 +91,7 @@ class CarController extends Controller
 
 
 
-       ////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
 
 
 
@@ -194,7 +191,7 @@ class CarController extends Controller
     //       }
     //       return null;
     //   }
-  ///////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////
 
 
 
@@ -228,7 +225,7 @@ class CarController extends Controller
      */
     public function update(Request $request, string $id)
     {
-   
+
         $data = $request->validate([
             'carTitle' => 'required|string|max:255',
             'description' => 'required|string|max:1000',
@@ -237,22 +234,20 @@ class CarController extends Controller
 
         ]);
         $data['published'] = isset($request->published);
-        // التحقق من رفع الصورة
+    
         if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $filename = time() . '.' . $file->getClientOriginalExtension();
-            $file->move('uploads', $filename);
-            $data['image'] = $filename;
-            $car = Car::findOrFail($id);
-            $car->update($data);
+            $data['image'] = $this->uploadFile($request->image, 'assets/images');
+        }
+            Car::where('id', $id)->update($data);
+
             return redirect()->route('cars.index');
         }
 
 
-////////////////////////
+        ////////////////////////
 
-//حل اخر
-     // // التحقق من صحة البيانات 
+        //حل اخر
+        // // التحقق من صحة البيانات 
         // $data = $request->validate([
         //     'carTitle' => 'required|string|max:255',
         //     'description' => 'required|string|max:1000',
@@ -285,7 +280,7 @@ class CarController extends Controller
 
         //    return redirect()->route('cars.index');
 
-    }
+    
 
 
 

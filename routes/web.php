@@ -4,7 +4,20 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExampleController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\SchoolClassController;
+use App\Http\Controllers\ProductController;
 
+
+
+
+
+
+
+
+
+
+
+
+/////
 Route::get('/', function () {
     return view('welcome');
 });
@@ -140,7 +153,7 @@ Route::get('/uploadForm', [ExampleController::class, 'uploadForm']);
 Route::post('/upload', [ExampleController::class, 'upload'])->name('upload');
 
 
-
+// Route::get('/index', [ExampleController::class, 'indexE']);
 
 
 
@@ -180,3 +193,7 @@ Route::get('/SchoolClasses/trashed', [SchoolClassController::class, 'ShowDeleted
 Route::patch('/SchoolClasses/{id}/', [SchoolClassController::class, 'restore'])->name('SchoolClasses.restore');
 Route::delete('/SchoolClasses/{id}/', [SchoolClassController::class, 'forceDelete'])->name('SchoolClasses.forceDelete');
 
+//task9
+Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
+Route::post('/products', [ProductController::class, 'store'])->name('products.store');
+Route::get('/products', [ProductController::class, 'indexR'])->name('products.index');
