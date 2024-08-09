@@ -61,5 +61,8 @@ class ExampleController extends Controller
     }
 
 
+    function about() {
+        return view('about');
+    }
 }
 

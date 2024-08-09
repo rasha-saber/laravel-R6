@@ -164,7 +164,7 @@ Route::post('/upload', [ExampleController::class, 'upload'])->name('upload');
 
 
 
-
+Route::get('/about', [ExampleController::class, 'about'])->name('about');
 
 
 //التاسك
@@ -197,3 +197,5 @@ Route::delete('/SchoolClasses/{id}/', [SchoolClassController::class, 'forceDelet
 Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
 Route::post('/products', [ProductController::class, 'store'])->name('products.store');
 Route::get('/products', [ProductController::class, 'indexR'])->name('products.index');
+Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
+Route::put('/products/{product}', [ProductController::class, 'update'])->name('products.update');
