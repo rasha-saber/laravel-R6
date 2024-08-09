@@ -234,53 +234,53 @@ class CarController extends Controller
 
         ]);
         $data['published'] = isset($request->published);
-    
+
         if ($request->hasFile('image')) {
             $data['image'] = $this->uploadFile($request->image, 'assets/images');
         }
-            Car::where('id', $id)->update($data);
+        Car::where('id', $id)->update($data);
 
-            return redirect()->route('cars.index');
-        }
+        return redirect()->route('cars.index');
+    }
 
 
-        ////////////////////////
+    ////////////////////////
 
-        //حل اخر
-        // // التحقق من صحة البيانات 
-        // $data = $request->validate([
-        //     'carTitle' => 'required|string|max:255',
-        //     'description' => 'required|string|max:1000',
-        //     'price' => 'required|numeric',
-        //     'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        // ]);
+    //حل اخر
+    // // التحقق من صحة البيانات 
+    // $data = $request->validate([
+    //     'carTitle' => 'required|string|max:255',
+    //     'description' => 'required|string|max:1000',
+    //     'price' => 'required|numeric',
+    //     'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    // ]);
 
-        // // البحث عن العربية وحدث بياناتها
-        // $car = Car::findOrFail($id);
-        // $car->carTitle = $data['carTitle'];
-        // $car->description = $data['description'];
-        // $car->price = $data['price'];
-        // $car->published = $request->has('published');
+    // // البحث عن العربية وحدث بياناتها
+    // $car = Car::findOrFail($id);
+    // $car->carTitle = $data['carTitle'];
+    // $car->description = $data['description'];
+    // $car->price = $data['price'];
+    // $car->published = $request->has('published');
 
-        // // لو تم رفع صورة جديدة، احفظ الصورة وحدث البيانات
-        // if ($request->hasFile('image')) {
-        //     // حذف الصورة القديمة  إذا كانت موجودة
-        //     if ($car->image && file_exists(public_path('images/' . $car->image))) {
-        //         unlink(public_path('images/' . $car->image));
-        //     }
+    // // لو تم رفع صورة جديدة، احفظ الصورة وحدث البيانات
+    // if ($request->hasFile('image')) {
+    //     // حذف الصورة القديمة  إذا كانت موجودة
+    //     if ($car->image && file_exists(public_path('images/' . $car->image))) {
+    //         unlink(public_path('images/' . $car->image));
+    //     }
 
-        //     // رفع الصورة الجديدة
-        //     $imageName = time().'.'.$request->image->extension();
-        //     $request->image->move(public_path('images'), $imageName);
-        //     $car->image = $imageName;
-        // }
+    //     // رفع الصورة الجديدة
+    //     $imageName = time().'.'.$request->image->extension();
+    //     $request->image->move(public_path('images'), $imageName);
+    //     $car->image = $imageName;
+    // }
 
-        // // حفظ التعديلات
-        // $car->save();
+    // // حفظ التعديلات
+    // $car->save();
 
-        //    return redirect()->route('cars.index');
+    //    return redirect()->route('cars.index');
 
-    
+
 
 
 

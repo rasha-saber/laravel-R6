@@ -66,11 +66,10 @@ class ProductController extends Controller
     {
         $products = Product::findOrFail($id);
         return view(' edit_products', compact('products'));
-       
     }
 
-  
-   
+
+
     /**
      * Update the specified resource in storage.
      */
@@ -83,14 +82,14 @@ class ProductController extends Controller
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 
         ]);
-  
-    
+
+
         if ($request->hasFile('image')) {
             $data['image'] = $this->uploadFile($request->image, 'assets/images');
         }
         Product::where('id', $id)->update($data);
 
-            return redirect()->route('products.index');
+        return redirect()->route('products.index');
     }
 
     /**
