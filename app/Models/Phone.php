@@ -11,7 +11,8 @@ class Phone extends Model
     protected $fillable = [
         'phone_number',
     ];
-    public function student() {
+    public function student()
+    {
         return $this->hasOne(Student::class);
     }
 }

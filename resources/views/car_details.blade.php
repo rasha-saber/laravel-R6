@@ -37,7 +37,7 @@
               </div>
               <div class="mb-4">
                 <p class="card-text">
-                  <span class="fw-bold">published: @if($car['published']=== 1) YES @else NO @endif</span> 
+                  <span class="fw-bold">published: @if($car['published']=== 1) YES @else NO @endif</span>
                 </p>
               </div>
               <div class="mb-4">

@@ -19,7 +19,7 @@ class CarController extends Controller
         // return view all cars, cars data
         // select * from cars;
         //افترضي=موديل
-       
+
         $cars = Car::get();
         //(اسم الملف, compact('الفيربول')):
         return view('cars', compact('cars'));
@@ -30,7 +30,7 @@ class CarController extends Controller
      */
     public function create()
     {
-        $categories = Category::select ('id', 'category_name')->get();
+        $categories = Category::select('id', 'category_name')->get();
         return view('add_car', compact('categories'));
         // $car = new Car();
         // return view('add_car', compact('car'));
@@ -79,7 +79,7 @@ class CarController extends Controller
             'description' => 'required|string|max:1000',
             'price' => 'required|numeric',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-'category_id' => 'required|exists:categories,id',
+            'category_id' => 'required|exists:categories,id',
         ]);
         $data['published'] = isset($request->published);
         $data['image'] = $this->uploadFile($request->image, 'assets/images/cars/');
@@ -205,7 +205,7 @@ class CarController extends Controller
     {
         //    $car=car::findOrFall($id)
         $car = Car::findOrFail($id);
-         return view('car_details', compact('car'));
+        return view('car_details', compact('car'));
         // $categories = Category::select ('id', 'category_name')->get();
         // return view('car_details', compact('car', 'categories'));
     }
@@ -220,9 +220,9 @@ class CarController extends Controller
         // get data of car to be updated
         // select 
 
-       
+
         $car = Car::findOrFail($id);
-        $categories = Category::select ('id', 'category_name')->get();
+        $categories = Category::select('id', 'category_name')->get();
         return view('edit_car', compact('car', 'categories'));
         // return "Data addad successfully $id";
     }
@@ -238,7 +238,7 @@ class CarController extends Controller
             'description' => 'required|string|max:1000',
             'price' => 'required|numeric',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-'category_id' => 'required|exists:categories,id',
+            'category_id' => 'required|exists:categories,id',
         ]);
         $data['published'] = isset($request->published);
 
