@@ -65,6 +65,21 @@
            </div>
 
            <div class="form-group mb-3 row">
+            <label for="" class="form-label col-md-2 fw-bold text-md-end">Category:</label>
+            <div class="col-md-10">
+              <select name="category_id" id="category_id" class="form-control">
+                <option value="">Select Category</option>
+                @foreach($categories as $category)
+                <option value="{{$category->id}}" @selected(old('category_id', $car->category_id ?? '') == $category->id)>{{$category->category_name}}</option>
+                @endforeach
+              </select>
+              @error('category_id')
+                <div class="alert alert-warning">{{$message}}</div>
+              @enderror
+            </div>
+          </div>
+
+           <div class="form-group mb-3 row">
              <label for="" class="form-label col-md-2 fw-bold text-md-end">Car image:</label>
              <div class="col-md-10">
 
@@ -83,7 +98,7 @@
            </div>
          </form>
          @if(isset($car->image))
-         <img src="{{ asset('assets/images/' . $car->image) }}" alt="" width="100">
+         <img src="{{ asset('assets/images/cars/' . $car->image) }}" alt="" width="100">
          @endif
        </div>
      </div>

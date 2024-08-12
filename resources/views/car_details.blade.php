@@ -23,7 +23,7 @@
         <div class="card bg-light border-0">
           <div class="row justify-content-center">
             <div class="col-lg-4 col-md-6 col-10 position-relative overflow-hidden">
-              <img src="{{ asset('assets/images/' . $car->image) }}" alt="" class="card-img" style="position: absolute; margin: auto; top: 50%; transform: translateY(-50%); width: 100%;height: 100%; object-fit: cover;" />
+              <img src="{{ asset('assets/images/cars/' . $car->image) }}" alt="" class="card-img" style="position: absolute; margin: auto; top: 50%; transform: translateY(-50%); width: 100%;height: 100%; object-fit: cover;" />
 
             </div>
             <div class="col-lg-8 col-md-6 col-12 card-body">
@@ -32,17 +32,17 @@
               </div>
               <div class="mb-4">
                 <p class="card-text">
-                  <span class="fw-bold">{{$car['price']}}</span> 99$
+                  <span class="fw-bold">price: {{$car['price']}}</span> $
                 </p>
               </div>
               <div class="mb-4">
                 <p class="card-text">
-                  <span class="fw-bold">@if($car['published']=== 1) YES @else NO @endif</span> Yes
+                  <span class="fw-bold">published: @if($car['published']=== 1) YES @else NO @endif</span> 
                 </p>
               </div>
               <div class="mb-4">
                 <p class="card-text">
-                  <span class="fw-bold">Description:</span><br>{{$car['description']}}
+                  <span class="fw-bold">Description: {{$car['description']}}</span><br>
                 </p>
               </div>
               <div class="text-md-end">
