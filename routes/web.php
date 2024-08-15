@@ -182,7 +182,6 @@ Route::post('/upload', [ExampleController::class, 'upload'])->name('upload');
 Route::get('/about', [ExampleController::class, 'about'])->name('about');
 
 
-//التاسك
 
 
 
