@@ -40,6 +40,20 @@
                   <span class="fw-bold">published: @if($car['published']=== 1) YES @else NO @endif</span>
                 </p>
               </div>
+
+              <div class="mb-4">
+                <p class="card-text">
+                  <span class="fw-bold">Description: {{$car['description']}}</span><br>
+                </p>
+              </div>
+
+
+              <div class="mb-4">
+                <p class="card-text">
+                  <span class="fw-bold">category_name: {{$car['category']['category_name']}}</span><br>
+                </p>
+              </div>
+
               <div class="mb-4">
                 <p class="card-text">
                   <span class="fw-bold">Description: {{$car['description']}}</span><br>

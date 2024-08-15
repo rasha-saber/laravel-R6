@@ -5,17 +5,8 @@ use App\Http\Controllers\ExampleController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\SchoolClassController;
 use App\Http\Controllers\ProductController;
-
-
-
-
-
-
-
-
-
-
-
+use App\Http\Controllers\ContactController;
+use Illuminate\Auth\Events\Verified;
 
 /////
 Route::get('/', function () {
@@ -124,7 +115,34 @@ Route::prefix('cars')->group(function () {
     });
 });
 
-Route::get('/cars/create', [CarController::class, 'create'])->name('cars.create');
+
+// Route::prefix('cars')->controller(CarController::class)->as('cars.')->middleware('verified')->group(function (){
+
+// Route::get('/create', 'create')->name('cars.create');
+// Route::post('/cars',  'store')->name('cars.store');
+// //المحاضرة 5
+// Route::get('/cars',  'index')->name('cars.index');
+// Route::get('/cars/{id}/edit', 'edit')->name('cars.edit');
+// //المحاضرة 6
+// Route::put('/cars/{id}',  'update')->name('cars.update');
+
+// Route::get('/cars/{id}/Show', 'Show')->name('cars.Show');
+
+// Route::get('/cars/{id}/delete', 'destroy')->name('cars.destroy');
+// Route::get('/cars/trashed',  'showDeleted')->name('cars.showDeleted');
+
+
+// //المحاضرة 7
+
+// Route::patch('/cars/{id}/', 'restore')->name('cars.restore');
+
+// Route::delete('/cars/{id}/', 'forceDelete')->name('cars.forceDelete');
+
+// });
+
+
+// Route::prefix('cars')->middleware('verified')->group(function (){
+Route::get('/cars/create', [CarController::class, 'create'])->name('cars.create')->middleware('verified');
 Route::post('/cars', [CarController::class, 'store'])->name('cars.store');
 //المحاضرة 5
 Route::get('/cars', [CarController::class, 'index'])->name('cars.index');
@@ -143,10 +161,7 @@ Route::get('/cars/trashed', [CarController::class, 'showDeleted'])->name('cars.s
 Route::patch('/cars/{id}/', [CarController::class, 'restore'])->name('cars.restore');
 
 Route::delete('/cars/{id}/', [CarController::class, 'forceDelete'])->name('cars.forceDelete');
-
-
-
-
+// });
 //المحاضرة 8
 
 Route::get('/uploadForm', [ExampleController::class, 'uploadForm']);
@@ -168,10 +183,8 @@ Route::get('/about', [ExampleController::class, 'about'])->name('about');
 
 
 //التاسك
-Route::get('/contact', [ExampleController::class, 'index'])->name('contact.index');
-Route::post('/contact', [ExampleController::class, 'contactsubmit'])->name('contact.submit');
 
-//
+
 
 Route::get('/School_Classes/create', [SchoolClassController::class, 'create'])->name('School_Classes.create');
 Route::post('/School_Classes', [SchoolClassController::class, 'store'])->name('School_Classes.store');
@@ -203,3 +216,12 @@ Route::put('/products/{product}', [ProductController::class, 'update'])->name('p
 
 
 Route::get('/testOneToOne', [ExampleController::class, 'test']);
+
+Auth::routes(['verify' => true]);
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//task12
+// Route::get('/contactA', [ExampleController::class, 'indexA'])->name('contactA.indexA')->middleware('verified');
+// Route::post('/contactA', [ExampleController::class, 'contactAsubmit'])->name('contactAsubmit')->middleware('verified');
+Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
+Route::post('/contact', [ContactController::class, 'sendContact'])->name('contact.sendContact');

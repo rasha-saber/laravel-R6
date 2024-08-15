@@ -10,23 +10,23 @@ use Illuminate\Support\Facades\DB;
 class ExampleController extends Controller
 //التاسك
 {
-    public function index()
-    {
-        return view('contact');
-    }
+    // public function index()
+    // {
+    //     return view('contact');
+    // }
 
-    public function contactsubmit(Request $request)
-    {
-    //     // return $request->all();
-    //     // // return "form submitted";
+    // public function contactsubmit(Request $request)
+    // {
+    // //     // return $request->all();
+    // //     // // return "form submitted";
     
-        $name=$request->input('name');
-        $email = $request->input('email');
-        $subject = $request->input('subject');
-        $message = $request->input('message');
+    //     $name=$request->input('name');
+    //     $email = $request->input('email');
+    //     $subject = $request->input('subject');
+    //     $message = $request->input('message');
        
-        return 'Name : '.$name . 'Email : '. $email . 'Subject : '.$subject .  'Message : '. $message;
-    }
+    //     return 'Name : '.$name . 'Email : '. $email . 'Subject : '.$subject .  'Message : '. $message;
+    // }
 
 
 
@@ -75,5 +75,41 @@ class ExampleController extends Controller
        ->where('students.id', '=', 1)
        ->first());
     }
-}
 
+    public function indexA()
+    {
+        return view('contacttask');
+        // $contactA = contactA::get();
+        // return view('contactA', compact('contactA'));
+    }
+
+    public function contactAsubmit(Request $request)
+    {
+    //     // return $request->all();
+    //     // // return "form submitted";
+    
+        $name=$request->input('name');
+        $email = $request->input('email');
+        $subject = $request->input('subject');
+        $message = $request->input('message');
+       
+        return 'Name : '.$name . 'Email : '. $email . 'Subject : '.$subject .  'Message : '. $message;
+    }
+    
+//     $request->validate([
+//         'name' => 'required|string',
+//         'email' => 'required|email',
+//         'subject' => 'required|string',
+//         'message' => 'required|string',
+//     ]);
+//     $data = [
+//         'name' => $request->name,
+//         'email' => $request->email,
+//         'subject' => $request->subject,
+//         'message' => $request->message,
+//     ];
+//     Mail::to('rashasaer199@gmail.com')->send(new ContactMail($date));
+//     return back()->with('your message has been sent successfully');
+// }
+
+}

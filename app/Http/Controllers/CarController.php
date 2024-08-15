@@ -19,8 +19,8 @@ class CarController extends Controller
         // return view all cars, cars data
         // select * from cars;
         //افترضي=موديل
-
-        $cars = Car::get();
+        $cars = Car::with('category')->get();
+        // $cars = Car::get();
         //(اسم الملف, compact('الفيربول')):
         return view('cars', compact('cars'));
     }
@@ -201,14 +201,14 @@ class CarController extends Controller
     // /**
     //  * Display the specified resource.
     //  */
-    public function show(string $id)
-    {
-        //    $car=car::findOrFall($id)
-        $car = Car::findOrFail($id);
-        return view('car_details', compact('car'));
-        // $categories = Category::select ('id', 'category_name')->get();
-        // return view('car_details', compact('car', 'categories'));
-    }
+    // public function show(string $id)
+    // {
+    //     //    $car=car::findOrFall($id)
+    //     $car = Car::findOrFail($id);
+    //     return view('car_details', compact('car'));
+    //     // $categories = Category::select ('id', 'category_name')->get();
+    //     // return view('car_details', compact('car', 'categories'));
+    // }
 
 
 
@@ -317,19 +317,27 @@ class CarController extends Controller
 
 
 
+    public function show(string $id)
+    {
+        // $cars = Car::onlyTrashed()->get();
+       
+        $car = Car::with('category')->findOrFail($id);
+        // dd($cars->category->category_name);
+        return view('car_details', compact('car'));
+    }
+    
 
 
 
 
-
-
-
+   
 
     public function showDeleted()
     {
+       
         $cars = Car::onlyTrashed()->get();
         return view('trashedCars', compact('cars'));
-
+       
         // return redirect()->route('cars.index');
     }
 
@@ -356,6 +364,7 @@ class CarController extends Controller
         // return "delete page";
         car::where('id', $id)->restore();
         // return "Data deleted successfully"; 
+
         return redirect()->route('cars.showDeleted');
     }
 
