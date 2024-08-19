@@ -19,4 +19,22 @@ class Verified
         if (Auth::user() &&  Auth::user()->Verified == 1) {
         return $next($request);
     }
+    return redirect('home')->with('error','You have not Verified access');
+    }
+
 }
+
+
+// class VerifyUser
+// {
+//     public function handle(Request $request, Closure $next)
+//     {
+//         if (!$request->user()) {
+//             return redirect('/login')->with('error', 'You need to be logged in.');
+//         }
+
+//         return $next($request);
+//     }
+// }
+
+
