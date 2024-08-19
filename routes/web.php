@@ -223,3 +223,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // Route::post('/contactA', [ExampleController::class, 'contactAsubmit'])->name('contactAsubmit')->middleware('verified');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
 Route::post('/contact', [ContactController::class, 'sendContact'])->name('contact.sendContact');
+
+
+require base_path('routes/custom_routes.php');
