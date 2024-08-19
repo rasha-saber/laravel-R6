@@ -11,6 +11,7 @@ Aiفي التنسيق فقط  -->
 
 <h1>What is Middleware?</h1>
 <p>
+
 Middleware is software that lies between an operating system and the applications running on it. Essentially functioning as a hidden translation layer, middleware enables communication and data management for distributed applications. It’s sometimes called plumbing, as it connects two applications together so data and databases can be easily passed between the “pipe.” Using middleware allows users to perform such requests as submitting forms on a web browser, or allowing the web server to return dynamic web pages based on a user’s profile.
 </p>
 <p>
