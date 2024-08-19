@@ -11,7 +11,6 @@ Aiفي التنسيق فقط  -->
 
 <h1>What is Middleware?</h1>
 <p>
-
 Middleware is software that lies between an operating system and the applications running on it. Essentially functioning as a hidden translation layer, middleware enables communication and data management for distributed applications. It’s sometimes called plumbing, as it connects two applications together so data and databases can be easily passed between the “pipe.” Using middleware allows users to perform such requests as submitting forms on a web browser, or allowing the web server to return dynamic web pages based on a user’s profile.
 </p>
 <p>
@@ -115,7 +114,21 @@ Route::middleware(['isAdmin'])->group(function () {
 <p>
 Run the Laravel 11 application using the following command:
 </p>
+
 <pre><code>php artisan serve</code></pre>
+<br>
+
+<h1>Exclude middleware from a route</h1>
+<p>
+You can exclude middleware at the route level in Laravel using the withoutMiddleware() method.
+</p>
+<pre><code>
+Route::post('/some/route', SomeController::class)
+    ->withoutMiddleware([VerifyCsrfToken::class]);</code></pre>
+
+   
+
+
 
 <h1>أنواع Middleware</h1>
 <ul>
@@ -128,6 +141,8 @@ Run the Laravel 11 application using the following command:
 <p>
 الـ Middleware هو جزء من الكود يُنفّذ بين الطلبات (مثل زيارة صفحة) والاستجابات (مثل عرض الصفحة). يُستخدم لتنفيذ مهام معينة، مثل التأكد من أن المستخدم مسجل دخول قبل أن يسمح له بالوصول إلى صفحة معينة.
 </p>
+
+
 
 <h1>ملخص:</h1>
 <ul>

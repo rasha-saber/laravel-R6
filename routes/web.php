@@ -7,7 +7,6 @@ use App\Http\Controllers\SchoolClassController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ContactController;
 use Illuminate\Auth\Events\Verified;
-
 /////
 Route::get('/', function () {
     return view('welcome');
