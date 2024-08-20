@@ -1,7 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="en">
-//التاسك
+
 <head>
     <title>Contact Us</title>
     <meta charset="utf-8">
@@ -30,8 +29,20 @@
     <div class="container my-5">
         <div class="py-5 px-md-5 px-1  rounded-1 mx-md-5" style="background-color: #fffffff2;">
             <h2 class="fw-bold fs-1 mb-3 pb-2 text-center">Contact Us</h2>
-            <form action="{{ route('contact.submit') }}" method="POST">
-         @csrf
+<!-- 
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif -->
+            <form action="{{ route('contact.sendContact') }}" method="POST">
+                @csrf
+                <input type="hidden" name="_token" value="bsmsF2IF5BXpBHHBe1ILq3eoqLwrdY9ThuXJ2XNP" autocomplete="off">
+
                 <div class="form-group mb-3 row">
                     <label for="" class="form-label col-md-2 fw-bold text-md-end">Name:</label>
                     <div class="col-md-10">
@@ -41,13 +52,13 @@
                 <div class="form-group mb-3 row">
                     <label for="" class="form-label col-md-2 fw-bold text-md-end">Email:</label>
                     <div class="col-md-10">
-                        <input type="email"  name="email"  placeholder="e.g. example@example.com" class="form-control py-2" />
+                        <input type="email" name="email" placeholder="e.g. example@example.com" class="form-control py-2" />
                     </div>
                 </div>
                 <div class="form-group mb-3 row">
                     <label for="" class="form-label col-md-2 fw-bold text-md-end">Subject:</label>
                     <div class="col-md-10">
-                        <input type="text" name="subject"  placeholder="Enter subject" class="form-control py-2" />
+                        <input type="text" name="subject" placeholder="Enter subject" class="form-control py-2" />
                     </div>
                 </div>
                 <hr>

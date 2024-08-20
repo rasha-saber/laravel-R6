@@ -125,8 +125,8 @@ $data = $request->validate([
     'name' => 'required|string|max:100',
     'capacity' => 'required|integer',
     'price' => 'required|decimal:0,1',
-    'time_from' => 'required|date_format:H:i',
-    'time_to' => 'required|date_format:H:i',
+    'time_from' => 'required|date_format:H:i:s',
+    'time_to' => 'required|date_format:H:i:s',
     // 'updated_at' => now(),
 ]);
 

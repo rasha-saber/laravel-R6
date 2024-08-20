@@ -31,6 +31,7 @@
               <th scope="col">Price</th>
               <th scope="col">Description</th>
               <th scope="col">Published</th>
+              <th scope="col">category_name</th>
               <th scope="col">Edit</th>
               <th scope="col">Show</th>
               <th scope="col">Delete</th>
@@ -44,8 +45,11 @@
               <td>{{$car['price']}}</td>
               <td>{{ Str::limit($car['description'], 15,'....')}}</td>
               <td>@if($car['published']=== 1) YES @else NO @endif</td>
+              <td>{{$car['category']['category_name']}}</td>
               <td><a href="{{route('cars.edit', $car['id'])}}">Edit</a></td>
               <td><a href="{{route('cars.Show', $car['id'])}}">Show</a></td>
+             <!-- // <td><a href="{{route('cars.edit', $car['id'])}}">Edit</a></td> -->
+
               <td><a href="{{route('cars.destroy', $car['id'])}}" onclick=" return confirm('Are you sure you want to delete?')">delete</a></td>
             </tr>
             @endforeach 
