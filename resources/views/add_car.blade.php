@@ -82,7 +82,7 @@
            </div>
 
            <div class="form-group mb-3 row">
-             <label for="file-upload" {{__('validation.attributes.choose-file')}} class="form-label col-md-2 fw-bold text-md-end">{{__('cars.Carimage')}}:</label>
+             <label for="file-upload" {{__('cars.choose-file')}} class="form-label col-md-2 fw-bold text-md-end">{{__('cars.Carimage')}}:</label>
             
              <div class="col-md-10">
 
