@@ -138,10 +138,16 @@ Route::prefix('cars')->group(function () {
 // Route::delete('/cars/{id}/', 'forceDelete')->name('cars.forceDelete');
 
 // });
+Route::group(
+    [
+        'prefix' => LaravelLocalization::setLocale(),
+        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+    ], function(){ 
+        Route::get('/cars/create', [CarController::class, 'create'])->name('cars.create');
 
-
+  
+//->middleware('verified')
 // Route::prefix('cars')->middleware('verified')->group(function (){
-Route::get('/cars/create', [CarController::class, 'create'])->name('cars.create')->middleware('verified');
 Route::post('/cars', [CarController::class, 'store'])->name('cars.store');
 //المحاضرة 5
 Route::get('/cars', [CarController::class, 'index'])->name('cars.index');
@@ -162,7 +168,7 @@ Route::patch('/cars/{id}/', [CarController::class, 'restore'])->name('cars.resto
 Route::delete('/cars/{id}/', [CarController::class, 'forceDelete'])->name('cars.forceDelete');
 // });
 //المحاضرة 8
-
+});
 Route::get('/uploadForm', [ExampleController::class, 'uploadForm']);
 Route::post('/upload', [ExampleController::class, 'upload'])->name('upload');
 
