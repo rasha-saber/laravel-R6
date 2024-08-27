@@ -24,8 +24,7 @@ class BackupDatabase extends Command
      * Execute the console command.
      */
     public function handle()
-    
-        
+
         {
             if (!file_exists(storage_path('app/backup'))) {
                 mkdir(storage_path('app/backup'), 0755, true);
