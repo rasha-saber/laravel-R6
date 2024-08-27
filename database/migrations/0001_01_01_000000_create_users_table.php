@@ -15,9 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string ('mobile')->default('default_value')->change();
+            $table->string ('mobile');
+            // $table->string ('mobile')->default('default_value')->change();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('expired')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });
