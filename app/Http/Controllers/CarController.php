@@ -201,14 +201,14 @@ class CarController extends Controller
     // /**
     //  * Display the specified resource.
     //  */
-    // public function show(string $id)
-    // {
-    //     //    $car=car::findOrFall($id)
-    //     $car = Car::findOrFail($id);
-    //     return view('car_details', compact('car'));
-    //     // $categories = Category::select ('id', 'category_name')->get();
-    //     // return view('car_details', compact('car', 'categories'));
-    // }
+    public function show(string $id)
+    {
+        //    $car=car::findOrFall($id)
+        $car = Car::findOrFail($id);
+        return view('car_details', compact('car'));
+        // $categories = Category::select ('id', 'category_name')->get();
+        // return view('car_details', compact('car', 'categories'));
+    }
 
 
 
@@ -317,14 +317,14 @@ class CarController extends Controller
 
 
 
-    public function show(string $id)
-    {
-        // $cars = Car::onlyTrashed()->get();
+    // public function show(string $id)
+    // {
+    //     // $cars = Car::onlyTrashed()->get();
        
-        $car = Car::with('category')->findOrFail($id);
-        // dd($cars->category->category_name);
-        return view('car_details', compact('car'));
-    }
+    //     $car = Car::with('category')->findOrFail($id);
+    //     // dd($cars->category->category_name);
+    //     return view('car_details', compact('car'));
+    // }
     
 
 
